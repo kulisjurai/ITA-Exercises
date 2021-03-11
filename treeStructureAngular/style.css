@@ -4,7 +4,7 @@ body {
 }
 #wrapper {
   float: left;
-  padding: 20px;
+  padding: 15px;
   background-color: rgb(41, 40, 40);
   height: 91vh;
   width: 477px;
@@ -25,14 +25,14 @@ body {
 #editor {
   float: right;
   background-color: rgb(41, 40, 40);
-  height: 89.5vh;
-  width: 936px;
+  height: 90.7vh;
+  width: 965px;
   margin-left: 0;
-  padding: 25px;
+  padding: 15px;
 }
 #editor div {
   border: 1px solid rgb(94, 182, 255);
-  height: 89.5vh;
+  height: 90.3vh;
 }
 input {
   opacity: 0;

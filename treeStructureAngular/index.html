@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+        integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+        crossorigin="anonymous" />
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body ng-app="myApp" ng-controller="MainController">
+    <div id="wrapper">
+        <div id="folder-structure-diplay">
+            <h2>Tree structure Angular <span>JS</span></h2>
+            <ul>
+                <li ng-repeat="mainFolder in treeData">
+                    <div class="click-range" ng-click="showFolder(mainFolder.children)"><i class="fas fa-caret-right"
+                            ng-class="{true: 'rotate-down'}[mainFolder.children[0].visible]"></i>
+                        {{mainFolder.name}}
+                    </div>
+                    <ul>
+                        <li ng-repeat="folder in mainFolder.children" ng-hide="!folder.visible">
+                            <div class="click-range" ng-click="showFolder(folder.children)">
+                                <i class="fas fa-caret-right"
+                                    ng-class="{true: 'rotate-down'}[folder.children[0].visible]"
+                                    ng-if="!folder.name.endsWith('js')">
+                                </i>
+                                <i class=" fab fa-html5" ng-if="folder.name.endsWith('html')"></i>
+                                <i class="fab fa-js" ng-if="folder.name.endsWith('js')"></i>
+                                <i class="fab fa-css3-alt" ng-if="folder.name.endsWith('css')"></i>
+                                {{folder.name}}
+                            </div>
+                            <ul>
+                                <li ng-repeat="files in folder.children" ng-hide="!files.visible">
+                                    <div class="click-range" ng-click="showFolder(files.children)">
+                                        <i class="fas fa-caret-right"
+                                            ng-class="{true: 'rotate-down'}[files.children[0].visible]" ng-if="!files.name.endsWith('html') && !files.name.endsWith('css') &&
+                                        !files.name.endsWith('ts')"></i>
+                                        <i class=" fab fa-html5" ng-if="files.name.endsWith('html')"></i>
+                                        <i class="fab fa-js" ng-if="files.name.endsWith('ts')"></i>
+                                        <i class="fab fa-css3-alt" ng-if="files.name.endsWith('css')"></i>
+                                        {{files.name}}
+                                    </div>
+                                    <ul>
+                                        <li ng-repeat="subfiles in files.children" ng-hide="!subfiles.visible">
+                                            <div ng-click="showFolder(subfiles.children)" class="hover-sub">
+                                                <i class="fab fa-html5" ng-if="subfiles.name.endsWith('html')"></i>
+                                                <i class="fab fa-js" ng-if="subfiles.name.endsWith('ts')"></i>
+                                                <i class="fab fa-css3-alt" ng-if="subfiles.name.endsWith('css')"></i>
+                                                {{subfiles.name}}
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div id="editor">
+        <div></div>
+    </div>
+    <script src=" script.js"></script>
+</body>
+
+</html>

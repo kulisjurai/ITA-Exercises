@@ -40,8 +40,8 @@
                                 <li ng-repeat="files in folder.children" ng-hide="!files.visible">
                                     <div class="click-range" ng-click="showFolder(files.children)">
                                         <i class="fas fa-caret-right"
-                                            ng-class="{true: 'rotate-down'}[files.children[0].visible]" ng-if="!files.name.endsWith('html') && !files.name.endsWith('css') &&
-                                        !files.name.endsWith('ts')"></i>
+                                            ng-class="{true: 'rotate-down'}[files.children[0].visible]"
+                                            ng-if="files.children"></i>
                                         <i class=" fab fa-html5" ng-if="files.name.endsWith('html')"></i>
                                         <i class="fab fa-js" ng-if="files.name.endsWith('ts')"></i>
                                         <i class="fab fa-css3-alt" ng-if="files.name.endsWith('css')"></i>

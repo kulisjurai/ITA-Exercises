@@ -1,57 +1,19 @@
 const myApp = angular.module('myApp', []);
 
 
-myApp.controller('MainController', function ($scope) {
+myApp.controller('MainController', function ($scope, $http) {
 
-    $scope.treeData = [
-        {
-            name: 'e2e',
-            children: [
-                { name: 'e2e.script.tests.js' }
-            ]
-        },
-        {
-            name: 'node_modules',
-            children: [
-                { name: 'e2e.script.tests.js' }
-            ]
-        },
-        {
-            name: 'src',
-            children: [
-                {
-                    name: 'app',
-                    children: [
-                        {
-                            name: 'treeview',
-                            children: [
-                                { name: 'treeview.component.css' },
-                                { name: 'treeview.component.html' },
-                                { name: 'treeview.component.spec.ts' },
-                                { name: 'treeview.component.ts' },
-                                { name: 'treeview.module.ts' }
+    $http.get('/tree-data.json').then(function (data) {
 
-                            ],
-
-                        },
-                        { name: 'app.component.css' },
-                        { name: 'app.component.html' },
-                        { name: 'app.component.spec.ts' },
-                        { name: 'app.component.ts' },
-                        { name: 'app.module.ts' }
-                    ],
-
-                }
-            ]
-        }
-
-    ];
+        $scope.treeData = data.data;
+    });
     $scope.showFolder = function (children) {
+        console.log($scope.treeData)
         if (children === undefined) {
             return;
         }
-        for (let i = 0; i < children.length; i++) {
-            children[i].visible == true ? children[i].visible = false : children[i].visible = true;
+        for (let child of children) {
+            child.visible = !child.visible;
         }
     }
 });

@@ -8,10 +8,8 @@ myApp.controller('MainController', function ($scope, $http) {
     });
 
     $scope.showFolder = function (children) {
-        console.log($scope.treeData)
-        if (children === undefined) {
-            return;
-        }
+        if (children === undefined) return;
+
         for (let child of children) {
             child.visible = !child.visible;
         }
